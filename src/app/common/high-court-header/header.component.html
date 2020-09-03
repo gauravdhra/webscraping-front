@@ -1,0 +1,34 @@
+
+<h1 style="color:#5410ad">{{selectedCourt | uppercase}}</h1>
+<b><label for="gender">Select High Court</label></b>
+<div class="form-group">
+  <select class="form-control" (change)="switchCourt()"  [(ngModel)]="selectedCourt">
+    <option value="allahabad">Allahabad High Court</option>
+    <option value="andhra-pradesh">Andhra Pradesh High Court</option>
+    <option value="bombay">Bombay High Court</option>
+    <option value="calcutta">Calcutta High Court</option>
+    <option value="chhattisgarh">Chhattisgarh High Court</option>
+    <option value="delhi">Delhi High Court</option>
+    <option value="gujrat">Gujrat High Court</option>
+    <option value="guwahati">Guwahati High Court</option>
+    <option value="himachal-pradesh">Himachal Pradesh High Court</option>
+    <option value="jharkhand">Jharkhand High Court</option>
+    <option value="jammu-kashmir">Jammu & Kashmir High Court</option>
+    <option value="karnataka">Karnataka High Court</option>
+    <option value="kerala">Kerala High Court</option>
+    <option value="madhya-pradesh">Madhya Pradesh High Court</option>
+    <option value="madras">Madras High Court</option>
+    <option value="manipur">Manipur High Court</option>
+    <option value="meghalaya">Meghalaya High Court</option>
+    <option value="orissa">Orissa High Court</option>
+    <option value="patna">Patna High Court</option>
+    <option value="haryana-punjab">Punjab & Haryana High Court</option>
+    <option value="rajasthan">Rajasthan High Court</option>
+    <option value="sikkim">Sikkim High Court</option>
+    <option value="telangana">Telangana High Court</option>
+    <option value="tripura">Tripura High Court</option>
+    <option value="uttarakhand">Uttarakhand High Court</option>
+  </select>
+</div>
+
+<router-outlet></router-outlet>

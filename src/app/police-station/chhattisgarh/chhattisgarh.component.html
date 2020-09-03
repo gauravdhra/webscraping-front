@@ -1,0 +1,119 @@
+<table id="tables_input" align="center" border="1" width="50%" cellpadding="2" cellspacing="3">
+    <tbody>
+        <tr>
+            <th colspan="12" align="center"><strong>Search FIR Status</strong></th>
+        </tr>
+        <tr>
+            <td colspan="3" align="center">
+                <font color="RED">*</font>District
+            </td>
+            <td colspan="3" align="center">
+                <font color="RED">*</font>Police Station
+            </td>
+            <td colspan="3" align="center">From Date </td>
+            <td colspan="3" align="center">To Date </td>
+        </tr>
+        <tr>
+            <td colspan="3" align="center"><select name="case_type" id="case_type" (change)="getPoliceStation()"
+                    [(ngModel)]="searchFir.districtCode" style="width: 250px;height:21px;">
+
+                    <option disabled value="-1">Please Select District</option>
+                    <option value="33301">बालोद</option>
+                    <option value="33302">बलौदा बाजार</option>
+                    <option value="33303">बेमेतरा</option>
+                    <option value="33304">कोंडागांव</option>
+                    <option value="33305">धमतरी</option>
+                    <option value="33306">मुंगेली</option>
+                    <option value="33307">सुकमा</option>
+                    <option value="33308">जांजगीर चाम्&zwj;पा </option>
+                    <option value="33309">जशपुर</option>
+                    <option value="33310">कांकेर</option>
+                    <option value="33313">बस्तर</option>
+                    <option value="33317">बिलासपुर</option>
+                    <option value="33325">दुर्ग</option>
+                    <option value="33340">रायगढ़</option>
+                    <option value="33341">रायपुर</option>
+                    <option value="33354">अंबिकापुर (सरगुजा)</option>
+                    <option value="33358">राजनांदगाँव</option>
+                    <option value="33360">शासकीय रेलवे पुलिस रायपुर</option>
+                    <option value="33363">दन्&zwj;तेवाड़ा</option>
+                    <option value="33365">कबीरधाम</option>
+                    <option value="33366">कोरबा</option>
+                    <option value="33367">कोरिया</option>
+                    <option value="33368">महासमुंद</option>
+                    <option value="33811">बीजापुर</option>
+                    <option value="33813">बलरामपुर</option>
+                    <option value="33814">नारायणपुर</option>
+                    <option value="33815">सूरजपुर</option>
+                    <option value="33816">गरियाबंद</option>
+                    <option value="33817">गौरेला-पेण्ड्रा-मरवाही</option>
+                    <option value="33959">मुख्यालय, ईओडब्ल्यू / एसीबी, छत्तीसगढ़</option>
+
+                </select>
+
+
+            </td>
+            <td colspan="3" align="center"><select [disabled]="dropdownLoaded" name="case_type" id="case_type" [(ngModel)]="searchFir.psCode"
+                    style="width: 250px;height:21px;">
+                    <option [value]="item.psc" [disabled]="item.value == 0" *ngFor="let item of policeStations">
+                        {{item.ps}}</option>
+                </select>
+                <div *ngIf="dropdownLoaded" class="spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                  </div>
+               
+
+            </td>
+
+
+            <td colspan="3" align="center"><input (ngModelChange)="asignFromDateValue(searchFir,$event)"
+                    [ngModel]="searchByPartyNameFromDate " type="date" name="searchByPartyNameFromDate"
+                    id="searchByPartyNameFromDate" size="10" value=""></td>
+            <td colspan="3" align="center"><input (ngModelChange)="asignToDateValue(searchFir,$event)"
+                    [ngModel]="searchByPartyNameToDate " type="date" name="searchByPartyNameToDate"
+                    id="searchByPartyNameToDate" size="10" value=""></td>
+        </tr>
+        <tr>
+            <td colspan="12" align="center"><input name="submit" (click)="submit('FIR',searchFir)" type="submit"
+                    value="Search Case"></td>
+        </tr>
+
+
+
+    </tbody>
+</table>
+<h5 align="center" *ngIf="isFormValid.indexOf('FIR') > -1">
+    <font color="RED">Please fill all required fields. </font>
+</h5>
+
+
+
+
+
+    <h2>Case Search Result</h2>
+    <hr>
+
+    <div style=" text-align: center;margin-bottom:10px" [innerHTML]="message"></div>
+    <div class="loading" *ngIf="spinner">Loading&#8230;</div>
+
+
+    <table width="100%" id="tables11">
+        <tbody>
+            <tr>
+                <th *ngFor="let column of headers">
+                    {{column}}
+                </th>
+            </tr>
+            <tr *ngFor="let data of listResponse">
+                <td *ngFor="let row of  data">
+                    {{row}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <div [innerHTML]="theTableString"></div>

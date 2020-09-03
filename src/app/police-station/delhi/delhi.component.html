@@ -1,0 +1,94 @@
+<table id="tables_input" align="center" border="1" width="50%" cellpadding="2" cellspacing="3">
+  <tbody>
+      <tr>
+          <th colspan="12" align="center"><strong>Search FIR Status</strong></th>
+      </tr>
+      <tr>
+          <td colspan="3" align="center">
+              <font color="RED">*</font>District
+          </td>
+          <td colspan="3" align="center">
+              <font color="RED">*</font>Police Station
+          </td>
+          <td colspan="3" align="center"><font color="RED">*</font>Year </td>
+          <td colspan="3" align="center"><font color="RED">*</font>FIR No </td>
+      </tr>
+      <tr>
+          <td colspan="3" align="center"><select name="case_type" id="case_type" (change)="getPoliceStation()"
+                  [(ngModel)]="searchFir.sdistrict" style="width: 250px;height:21px;">
+
+                  <option disabled value="0" title="--------------Select-----------------">--------------Select-----------------</option>
+                               
+                                   <option value="8162" title="CENTRAL">CENTRAL</option><option value="8175" title="CRIME BRANCH">CRIME BRANCH</option><option value="8176" title="DWARKA">DWARKA</option><option value="8168" title="EAST">EAST</option><option value="8956" title="EOW">EOW</option><option value="8169" title="IGI AIRPORT">IGI AIRPORT</option><option value="8160" title="METRO">METRO</option><option value="8165" title="NEW DELHI">NEW DELHI</option><option value="8166" title="NORTH">NORTH</option><option value="8173" title="NORTH EAST">NORTH EAST</option><option value="8172" title="NORTH WEST">NORTH WEST</option><option value="8174" title="OUTER DISTRICT">OUTER DISTRICT</option><option value="8991" title="OUTER NORTH">OUTER NORTH</option><option value="8164" title="RAILWAYS">RAILWAYS</option><option value="8959" title="ROHINI">ROHINI</option><option value="8957" title="SHAHDARA">SHAHDARA</option><option value="8167" title="SOUTH">SOUTH</option><option value="8171" title="SOUTH WEST">SOUTH WEST</option><option value="8955" title="SOUTH-EAST">SOUTH-EAST</option><option value="8954" title="SPECIAL CELL(SB)">SPECIAL CELL(SB)</option><option value="8953" title="SPECIAL POLICE UNIT FOR WOMEN &amp; CHILDREN">SPECIAL POLICE UNIT FOR WOMEN &amp; CHILDREN</option><option value="8161" title="VIGILANCE">VIGILANCE</option><option value="8170" title="WEST">WEST</option>
+
+              </select>
+
+
+          </td>
+          <td colspan="3" align="center"><select [disabled]="dropdownLoaded" name="case_type" id="case_type" [(ngModel)]="searchFir.spolicestation"
+                  style="width: 250px;height:21px;">
+                  <option [value]="item[0]" [disabled]="item.value == 0" *ngFor="let item of policeStations">
+                      {{item[1]}}</option>
+              </select>
+              <div *ngIf="dropdownLoaded" class="spinner">
+                  <div class="bounce1"></div>
+                  <div class="bounce2"></div>
+                  <div class="bounce3"></div>
+                </div>
+             
+
+          </td>
+
+
+          <td colspan="3" align="center">
+            <select name="rgyear" [(ngModel)]="searchFir.firYear" id="rgyear">
+              <option value="">-Select-</option>
+              <option [value]="year" *ngFor="let year of years">{{year}}</option>
+            </select>
+          </td>
+          <td colspan="3" align="center"><input 
+                  [(ngModel)]="searchFir.regFirNo" type="text" name="searchByPartyNameToDate"
+                  id="searchByPartyNameToDate" size="10" ></td>
+      </tr>
+      <tr>
+          <td colspan="12" align="center"><input name="submit" (click)="submit('FIR',searchFir)" type="submit"
+                  value="Search Case"></td>
+      </tr>
+
+
+
+  </tbody>
+</table>
+<h5 align="center" *ngIf="isFormValid.indexOf('FIR') > -1">
+  <font color="RED">Please fill all required fields. </font>
+</h5>
+
+
+
+
+
+  <h2>Case Search Result</h2>
+  <hr>
+
+  <div style=" text-align: center;margin-bottom:10px" [innerHTML]="message"></div>
+  <div class="loading" *ngIf="spinner">Loading&#8230;</div>
+
+
+  <table width="100%" id="tables11">
+      <tbody>
+          <tr>
+              <th *ngFor="let column of headers">
+                  {{column}}
+              </th>
+          </tr>
+          <tr *ngFor="let data of listResponse">
+              <td *ngFor="let row of  data">
+                  {{row}}
+              </td>
+          </tr>
+      </tbody>
+  </table>
+
+
+
+  <div [innerHTML]="theTableString"></div>

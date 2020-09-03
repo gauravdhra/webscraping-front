@@ -1,0 +1,170 @@
+<b><label for="gender">Search By:</label></b>
+<div class="">
+    <!-- <label for="website">Search By: </label> -->
+    <select class="form-control" (change)="onselectSearchType($event)" (change)="onselectSearchType($event)"  [(ngModel)]="selectedSearch">
+        <option value="default" disabled>Choose Search By</option>
+        <option value="party">Party Name</option>
+        <option value="advocate">Advocate Name</option>
+        <option value="case-number">Case Number</option>
+        <option value="cnr-number">CNR Number</option>
+    </select>
+</div>
+
+<div [ngSwitch]="selectedSearch">
+
+
+   
+
+    <table id="tables_input" align="center" border="1" *ngSwitchCase="'party'" width="50%" cellpadding="2"
+        cellspacing="3">
+        <tbody>
+            <tr>
+                <th colspan="3" align="center"><strong>Search By Party Name</strong></th>
+            </tr>
+            <tr>
+                <td width="34%" align="center">
+                    <font color="RED">*</font>Party Name
+                </td>
+                <td width="33%" align="center">
+                    <font color="RED">*</font>Year
+                </td>
+            </tr>
+            <tr>
+                <td width="34%" align="center"><input name="t_case_no" [(ngModel)]="searchByPartyName.petres_name"
+                        id="t_case_no" type="text" size="10" value=""></td>
+                <td width="33%" align="center"><select name="rgyear" [(ngModel)]="searchByPartyName.rgyear"
+                        id="rgyear"><option value="">-Select-</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option><option value="1969">1969</option><option value="1968">1968</option><option value="1967">1967</option><option value="1966">1966</option><option value="1965">1965</option><option value="1964">1964</option><option value="1963">1963</option><option value="1962">1962</option><option value="1961">1961</option><option value="1960">1960</option>
+                    </select></td>
+            </tr>
+
+            <tr>
+                <td colspan="3" align="center"><input (click)="submit('party',searchByPartyName)" name="submit"
+                        type="submit" value="Search Case"></td>
+            </tr>
+            <h5  align="center" *ngIf="isFormValid.indexOf('party') > -1" > <font color="RED">Please fill all required fields. </font>
+            </h5>
+
+        </tbody>
+    </table>
+
+    <table id="tables_input" *ngSwitchCase="'advocate'" align="center" border="1" width="60%" cellpadding="2"
+        cellspacing="3">
+        <tbody>
+            <tr>
+                <th colspan="2" align="center"><strong>Search By Advocate Name</strong></th>
+            </tr>
+            <tr>
+                <td align="center">
+                    <font color="RED">*</font> Name(at least 3 characters) :
+                </td>
+                <td>
+                    <input name="advocate_name" [(ngModel)]="searchByAdvocateName.advocate_name" id="advocate_name" type="text"
+                        size="15" value=""> </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center"><input (click)="submit('advocate',searchByAdvocateName)" name="submit"
+                        type="submit" value="Search Case"></td>
+            </tr>
+            <h5  align="center" *ngIf="isFormValid.indexOf('advocate') > -1" > <font color="RED">Please fill all required fields. </font>
+            </h5>
+
+        </tbody>
+    </table>
+
+
+
+
+      
+  
+  <table id="tables_input" align="center" border="1" *ngSwitchCase="'case-number'" width="50%" cellpadding="2" cellspacing="3">
+    <tbody><tr>
+      <th colspan="3" align="center"><strong>Search By Case Number</strong></th>
+  </tr>
+  <tr>
+  <td width="33%" align="center"><font color="RED">*</font>Case Type </td>
+  <td width="34%" align="center"><font color="RED">*</font>Case Number </td>
+  <td width="33%" align="center"><font color="RED">*</font>Case Year </td>
+  </tr>
+  <tr>
+  <td width="33%" align="center"><select name="case_type" id="case_type" [(ngModel)]="searchByCaseNumber.case_type" style="width: 250px;height:21px;">
+
+
+
+
+        <option value="0">Select Case Type</option><option value="130">ABLAPL - ABLAPL- Anticipatory Bail(130)</option><option value="1">ADMLS - ADMLS-Admirality Suits.(1)</option><option value="2">AHO - AHO-Appeal Against High Court Order.(2)</option><option value="3">ARBA - ARBA-Appeals under Indian Arbitration Act.(3)</option><option value="4">ARBP - ARBP-Petitions under Indian Arbitration Act.(4)</option><option value="5">AS - AS-Admirality Suit.(5)</option><option value="6">BKGP - BKGP-Proceedings under Banking Regulation Act(6)</option><option value="7">BLAPL - BLAPL-Bail Application.(7)</option><option value="8">CEREF - CEREF-Reference under Central Excise Act.(8)</option><option value="9">CMAPL - CMAPL-Miscellaneous Applications.(9)</option><option value="10">CMP - CMP-Civil Miscellaneous Petition(10)</option><option value="11">CMPA - CMPA-Company Appeal.(11)</option><option value="12">CMPAT - CMPAT-Company Act.(12)</option><option value="13">CMPMC - CMPMC-Company Misc.Case.(13)</option><option value="14">CO - CO-Cross Objections in First Appeal.(14)</option><option value="15">COA - COA-Appeals against judgement in Comp.Pet.(15)</option><option value="16">COAPL - COAPL-Appl.in pending Proceeding(Comp. Act.)(16)</option><option value="17">COCAS - COCAS-Matters transfered US 446(3)(Comp.Act.)(17)</option><option value="18">CONTAC - CONTAC-Appeals against orders in Civil Contempt(18)</option><option value="19">CONTAR - CONTAR-Appeals against orders in Crl.Cont.mater(19)</option><option value="20">CONTC - CONTC-Cotempt of Court Cases (Civil contempt)(20)</option><option value="144">CONTC(CP) - Contempt Petition in Bhubaneswar Bench(144)</option><option value="146">CONTC(CPB) - Contempt Petition in Berhampur Bench(146)</option><option value="145">CONTC(CPC) - Contempt Petition in Cuttack Bench(145)</option><option value="147">CONTC(CPS) - Contempt Petition in Sambalpur Bench(147)</option><option value="21">CONTR - CONTR-Proceeding relating to Criminal Contempt(21)</option><option value="22">COPET - COPET-Orginal Petition (Companies Act.)(22)</option><option value="23">CRA - CRA-Criminal Appeals(23)</option><option value="24">CRLA - CRLA-Appeal against Judgement/Sentence.(24)</option><option value="25">CRLLP - CRLLP-Appl.for leave to appeal US 378 Cr.P.C.(25)</option><option value="26">CRLMA - CRLMA-Other Miscellaneous Application.(26)</option><option value="27">CRLMC - CRLMC-Appl.under Sec.482 Cr.P.C.(27)</option><option value="28">CRLMP - CRLMP-Criminal Miscellaneous Petition(28)</option><option value="29">CRLREF - CRLREF-Criminal Reference(29)</option><option value="30">CRLREV - CRLREV-Criminal Revision.(30)</option><option value="31">CRLTR - CRLTR-Original Trial.(31)</option><option value="32">CRMC - CRMC-Criminal Miscellaneous Case(32)</option><option value="33">CRP - CRP-Revision Petition.(33)</option><option value="34">CRREF - CRREF-Criminal Reference(34)</option><option value="35">CRREV - CRREV-Criminal Revision(35)</option><option value="36">CS - CS-Civil Suit(36)</option><option value="37">CS(OS) - CS(OS)-Civil suits.(37)</option><option value="38">CUSREF - CUSREF-Reference under Customs Act.(38)</option><option value="39">CVA - CVA-Civil Appeals(39)</option><option value="40">CVREF - CVREF-Civil Reference.(40)</option><option value="41">CVREV - CVREV-Civil Revision.(41)</option><option value="42">CVRVW - CVRVW-Civil Review.(42)</option><option value="43">DREF - DREF-Death Reference.(43)</option><option value="44">DSREF - DSREF-Confirmation under Sec.336 Cr.P.C.(44)</option><option value="45">EC - EC-Execution Case.(45)</option><option value="46">EDA - EDA-Appl.for reference under Estate Duty Act(46)</option><option value="47">EDR - EDR-Reference to High Court (Estate Tax Act)(47)</option><option value="48">ELA - ELA-Appeals from Judgement in Election Pet.(48)</option><option value="49">ELPET - ELPET-Election Petitions.(49)</option><option value="50">EP - EP-Election Petition Case.(50)</option><option value="51">EXFA - EXFA-Execution First Appeal.(51)</option><option value="52">EXOS - EXOS-Execution Application.(52)</option><option value="53">EXP - EXP-Execution Petition.(53)</option><option value="54">EXSA - EXSA-Execution Second Appeal.(54)</option><option value="55">FA - FA-First Appeal(55)</option><option value="57">FAO - FAO-First Appeal from Orders.(57)</option><option value="56">FA(OS) - FA(OS)-FA from Judgement in original suits.(56)</option><option value="58">GA - GA-Government Appeals(58)</option><option value="59">GCRLA - GCRLA-Government Appeals(59)</option><option value="60">GTA - GTA-Appl.for reference under Gift Tax Act.(60)</option><option value="61">GTR - GTR-Reference to High Court (Gift Tax Act.)(61)</option><option value="62">GUAP - GUAP-Pet. under Guardianship and Wards Act.(62)</option><option value="63">IA - IA-Interlocutory Appl. in suits/appeals.(63)</option><option value="64">INSA - INSA-Appeals under Insurance Act.(64)</option><option value="65">INSREF - INSREF-Reference under Insurance Act.(65)</option><option value="66">INTEST - INTEST-Intestate cases.(66)</option><option value="68">IPAPL - IPAPL-Appls.submittel after adjudication.(68)</option><option value="67">IP(M) - IP(M)-Main Petition (Insolvency ACt.)(67)</option><option value="69">ITA - ITA-Appeals Income-tax(69)</option><option value="70">ITR - ITR-Reference under Income-tax Act.(70)</option><option value="71">JCRA - JCRA-Jail Criminal Appeals(71)</option><option value="72">JCRLA - JCRLA-Jail Criminal Appeal(72)</option><option value="73">JCRLMC - JCRLMC-Jail Criminal Misc Case.(73)</option><option value="74">JCRLRV - JCRLRV-Jail Criminal Revision.(74)</option><option value="75">JCRMC - JCRMC-Jail Criminal Misc.Case.(75)</option><option value="76">JCRREV - JCRREV-Jail Criminal Revision(76)</option><option value="77">LAA - LAA-Appeals (Land Acquisition Act)(77)</option><option value="78">LAREF - LAREF-References (Land Acquisition Act)(78)</option><option value="79">LPA - LPA-Letters Patent Appeals.(79)</option><option value="80">MA - MA-Miscellaneous Appeals(80)</option><option value="81">MAC - MAC-Motor Accident Claims.(81)</option><option value="82">MACA - MACA-Motor Accident Appeals.(82)</option><option value="83">MATA - MATA-Matrimonial Cases (Appeals)(83)</option><option value="84">MATCAS - MATCAS-Matrimonial Case (Suits/Petitions)(84)</option><option value="85">MATREF - MATREF-Matrimonial Case (References)(85)</option><option value="86">MFA - MFA-FA against Spl. Jurisdiction Cases.(86)</option><option value="87">MJC - MJC-Misc.Judicial Case.(87)</option><option value="88">MREF - MREF-Matrimonial Reference.(88)</option><option value="89">MSA - MSA-SA from judgements in Misc. Cases.(89)</option><option value="90">MSREF - MSREF-Misc. summons/summons for Judgment/(90)</option><option value="91">NM - NM-Notice of Motion.(91)</option><option value="92">OCRMC - OCRMC-Original Crl. Miscellaneous Case(92)</option><option value="93">OJC - OJC-Original Jurisdiction case (Writ)(93)</option><option value="94">OREF - OREF-References.(94)</option><option value="95">OS - OS-Original Suit.(95)</option><option value="96">OTAPL - OTAPL-Other Tax Applications.(96)</option><option value="97">OTC - OTC-Other Tax Case.(97)</option><option value="98">OTR - OTR-Other Tax References Cases.(98)</option><option value="99">OVTA - OVTA-Tax Appeal Under OVAT ACt.(99)</option><option value="100">RCC - RCC-Original Suits/Pet.(Rent Control Matters(100)</option><option value="101">RCFA - RCFA-First Appeals(Rent Control Matters)(101)</option><option value="102">RCREV - RCREV-Revision (Rent Control Matters)(102)</option><option value="103">RCSA - RCSA-Second Appeals(Rent Control Matters)(103)</option><option value="104">RFA - RFA-FA from Judgement and Decree in Suit(104)</option><option value="152">RMC(152)</option><option value="105">RPFAM - RPFAM-Revision US 19 of Family Court Act.(105)</option><option value="106">RSA - RSA-Second Appeal from Judgement and Decree.(106)</option><option value="107">RVWPET - RVWPET-Review Petition.(107)</option><option value="148">RVWPET(RP) - Review Petition in Bhubaneswar Bench(148)</option><option value="150">RVWPET(RPB) - Review Petition in Berhampur Bench(150)</option><option value="149">RVWPET(RPC) - Review Petition in Cuttack Bench(149)</option><option value="151">RVWPET(RPS) - Review Petition in Sambalpur Bench(151)</option><option value="108">SA - SA-Second Appeal(108)</option><option value="109">SAO - SAO-Second Appeal from Appellate Order.(109)</option><option value="110">SCA - SCA-Supreme Court Appeal.(110)</option><option value="111">SCLP - SCLP-Pet.for leave to appeal to Supreme Court(111)</option><option value="112">SJC - SJC-Special Jurisdiction Case (Tax Matters)(112)</option><option value="113">SM - SM-Suo Motu.(113)</option><option value="114">SPA - SPA-Sp.Appeal before DB ...(114)</option><option value="115">SPJC - SPJC-Special Jurisdiction Cases.(115)</option><option value="116">STAPL - STAPL-Appl.for direction to make a reference.(116)</option><option value="117">STREF - STREF-Sales Tax reference.(117)</option><option value="118">STREV - STREV-Sales Tax  Revision.(118)</option><option value="119">TA - TA-Tax Appeal(119)</option><option value="120">TEST - TEST-Testamentary Cases.(120)</option><option value="121">TMC - TMC-Testamentary Misc.Case.(121)</option><option value="122">TREV - TREV-Tax Revesion(122)</option><option value="123">TRP(C) - TRP(C)-Transfer Petition under Sec.14 Cr.P.C.(123)</option><option value="124">TRPCRL - TRPCRL-Transfer Pet.for transfer a Crl.Proc.(124)</option><option value="125">WA - WA-Appeals before DB against SB Judgement(125)</option><option value="126">WP(C) - WP(C)-Writ Petition under Art.226 and 227.(126)</option><option value="132">WPC(OA) - WPC(OA)-Original Application in Bhubaneswar Bench(132)</option><option value="134">WPC(OAB) - WPC(OAB)-Original Application in Berhampur Bench(134)</option><option value="133">WPC(OAC) - WPC(OAC)-Original Application in Cuttack Bench(133)</option><option value="136">WPC(OAP) - WPC(OAP)-Original Application (Provisional) Bhubaneswar Bench(136)</option><option value="138">WPC(OAPB) - WPC(OAPB)-Original Application (Provisional) in Berhampur Bench(138)</option><option value="137">WPC(OAPC) - WPC(OAPC)-Original Application (Provisional) in Cuttack Bench(137)</option><option value="139">WPC(OAPS) - WPC(OAPS)-Original Application (Provisional) in Sambalpur Bench(139)</option><option value="135">WPC(OAS) - WPC(OAS)-Original Application in Sambalpur Bench(135)</option><option value="127">WPCRL - WPCRL-Pet.UA.226 for Writ of Habeas Corpus.(127)</option><option value="140">WPC(TA) - WPC(TA)-Transfer Application in Bhubaneswar Bench(140)</option><option value="142">WPC(TAB) - WPC(TAB)-Transfer Application in Berhampur Bench(142)</option><option value="141">WPC(TAC) - WPC(TAC)-Transfer Application in Cuttack Bench(141)</option><option value="143">WPC(TAS) - WPC(TAS)-Transfer Application in Sambalpur Bench(143)</option><option value="128">WTA - WTA-Appl.for reference under Wealth Tax Act.(128)</option><option value="129">WTR - WTR-Reference to High Court (Wealth Tax Act)(129)</option></select>
+
+
+</td>
+  <td width="34%" align="center"><input name="search_case_no" [(ngModel)]="searchByCaseNumber.search_case_no" id="search_case_no" type="text" size="10" value=""></td>
+  <td width="33%" align="center"><select name="rgyear"[(ngModel)]="searchByCaseNumber.rgyear"  id="rgyear"><option value="">-Select-</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option><option value="1969">1969</option><option value="1968">1968</option><option value="1967">1967</option><option value="1966">1966</option><option value="1965">1965</option><option value="1964">1964</option><option value="1963">1963</option><option value="1962">1962</option><option value="1961">1961</option><option value="1960">1960</option></select></td>			
+  </tr>
+  
+  <tr>
+  <td colspan="3" align="center"><input (click)="submit('case-number',searchByCaseNumber)"  name="submit" type="submit" value="Search Case"></td>
+  </tr>
+  <h5  align="center" *ngIf="isFormValid.indexOf('case-number') > -1" > <font color="RED">Please fill all required fields. </font>
+  </h5>
+
+    
+  </tbody></table>
+
+
+
+
+
+
+      
+  <table id="tables_input" *ngSwitchCase="'cnr-number'"  align="center" border="1" width="50%" cellpadding="2" cellspacing="3">
+    <tbody>
+        <tr>
+        <th colspan="3" align="center"><strong><font color="RED">Search BY CNR Not Available</font></strong></th>
+        </tr>
+        
+        <!-- <tr>
+        <td width="33%" align="center"><font color="RED">*</font>Case Year </td>
+        <td width="33%" align="center"><font color="RED">*</font>CIR Number </td>
+        </tr>
+        <tr>
+            <td width="34%" align="center"><input name="m_yr" [(ngModel)]="searchByCNRNumber.m_yr" id="m_yr" type="text" size="10" value=""></td>
+            <td width="34%" align="center"><input  [(ngModel)]="searchByCNRNumber.m_no" name="t_lac_no" id="t_lac_no" type="text" size="10" value="wer34234"></td>
+        </tr>
+        
+        <tr>
+            <td colspan="3" align="center"><input name="submit" (click)="submit('cnr-number',searchByCNRNumber)" type="submit" value="Search Case"></td>
+        </tr> -->
+        
+    
+      </tbody>
+ </table>
+
+
+
+    <div>
+
+
+        <h2>Case Search Result</h2>
+        <hr>
+
+        <div style="font-size: x-large;font-weight:bold; text-align: center;margin-bottom:10px">{{message}}</div>
+<div class="loading" *ngIf="spinner">Loading&#8230;</div>
+
+  
+  <table width="100%" id="tables11">
+    <tbody>
+    <tr>
+      <th *ngFor="let column of headers">
+        {{column}}
+      </th>
+    </tr>
+   <tr *ngFor="let data of listResponse">
+    <td *ngFor="let row of  data">
+      {{row}}
+    </td>
+  </tr>
+  </tbody>
+  </table>
+  
+
+
+        <div [innerHTML]="theTableString"></div>
