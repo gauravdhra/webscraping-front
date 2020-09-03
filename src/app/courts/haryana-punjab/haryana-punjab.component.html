@@ -1,0 +1,176 @@
+<!-- <router-outlet></router-outlet> -->
+
+<!-- <b><label for="gender">Select High Court</label></b>
+<div class="form-group">
+  <select class="form-control" (change)="onselectSearchType($event)"  [(ngModel)]="selectedSearch">
+    <option value="default" disabled>Choose Search By</option>
+    <option value="partyName">Party Name</option>
+    <option value="advocateName">Advocate Name</option>
+    <option value="caseNumber">Case Number</option>
+    <option value="cnrNumber">CNR Number</option>
+  </select>
+</div> -->
+
+
+
+
+<div [ngSwitch]="selectedSearch">
+  
+    <b><label for="gender">Search By:</label></b>
+    <div class="form-group">
+      <!-- <label for="website">Search By: </label> -->
+      <select class="form-control" (change)="onselectSearchType($event)"  [(ngModel)]="selectedSearch">
+        <option value="default" disabled>Choose Search By</option>
+        <option value="partyName">Party Name</option>
+        <option value="advocateName">Advocate Name</option>
+        <option value="caseNumber">Case Number</option>
+        <option value="cnrNumber">CNR Number</option>
+      </select>
+    </div>
+  
+    <table id="tables_input" *ngSwitchCase="'partyName'" align="center" border="1" width="60%" cellpadding="2" cellspacing="3">
+      <tbody><tr>
+        <th colspan="2" align="center"><strong>Search By Party Name</strong></th>
+    </tr>
+    <tr>
+    <td align="center"><font color="RED">*</font> Name(at least 3 characters) :  </td><td>
+      <input name="pet_name"  [(ngModel)]="searchByPartyName.pet_name" id="pet_name" type="text" size="10" value=""> </td></tr>
+    
+    <tr>
+    <td colspan="2" align="center"><input (click)="submit('partyName',searchByPartyName)"  name="submit" type="submit" value="Search Case"></td>
+  </tr>
+            <h5  align="center" *ngIf="isFormValid.indexOf('partyName') > -1" > <font color="RED">Please fill all required fields. </font></h5>
+
+  </tbody></table>
+  
+  
+  
+  
+  
+    
+  
+    <table id="tables_input" align="center" border="1" *ngSwitchCase="'advocateName'" width="60%" cellpadding="2" cellspacing="3">
+      <tbody><tr>
+        <th colspan="2" align="center"><strong>Search By Advocate Name</strong></th>
+    </tr>
+    <tr>
+    <td align="center"><font color="RED">*</font>Name(at least 3 characters) :  </td>
+    <td><input type="radio" checked="checked" name="select_name" id="select_name" (click)="selectOne('name')" style="float: left; margin-left: -25px; margin-top: 10px;">
+    <input name="adv_name" id="adv_name" [(ngModel)]="searchByAdvocateName.adv_name" type="text" size="10" value=""> 
+    </td></tr>
+    <tr>
+    <td align="center" style="float:right;">OR</td>
+    </tr>
+    <tr>
+    <td align="center" style="float:left; margin-left:42px;"><font color="RED">*</font>Enrollment No :  </td>
+    <td><input type="radio" name="select_name" id="select_code" (click)="selectOne('code')" style="float: left; margin-left: -25px; margin-top: 10px;">
+    <input name="adv_code" [(ngModel)]="searchByAdvocateCode.adv_code" [disabled]="advocateName" id="adv_code" type="text" size="3" value="">
+    <input name="adv_number"[(ngModel)]="searchByAdvocateCode.adv_number" [disabled]="advocateName" id="adv_number" type="text" size="4" value="">
+    <input name="adv_year"[(ngModel)]="searchByAdvocateCode.adv_year" [disabled]="advocateName" id="adv_year" type="text" size="3" value="">
+    </td></tr>
+    <tr>
+    <td colspan="2" align="center"><input (click)="submitAdvocate('advocateName',searchByAdvocateCode)"  name="submit" type="submit" value="Search Case"></td>
+  </tr>
+                    <h5  align="center" *ngIf="isFormValid.indexOf('advocateName') > -1" > <font color="RED">Please fill all required fields. </font>
+            </h5>
+
+      
+  </tbody></table>
+  
+  
+  
+  
+  
+  
+  
+  
+  <table id="tables_input" align="center" border="1" *ngSwitchCase="'caseNumber'" width="50%" cellpadding="2" cellspacing="3">
+    <tbody><tr>
+      <th colspan="3" align="center"><strong>Search By Case Number</strong></th>
+  </tr>
+  <tr>
+  <td width="33%" align="center"><font color="RED">*</font>Case Type </td>
+  <td width="34%" align="center"><font color="RED">*</font>Case Number </td>
+  <td width="33%" align="center"><font color="RED">*</font>Case Year </td>
+  </tr>
+  <tr>
+  <td width="33%" align="center"><select name="t_case_type" id="t_case_type" [(ngModel)]="searchByCaseNumber.t_case_type"><option value="">-Select-</option><option value="CWP">CWP</option><option value="CRM-M">CRM-M</option><option value="CR">CR</option><option value="RSA">RSA</option><option value="CRR">CRR</option><option value="CRA-S">CRA-S</option><option value="FAO">FAO</option><option value="CM">CM</option><option value="CRM">CRM</option><option value="ARB">ARB</option><option value="ARB-DC">ARB-DC</option><option value="ARB-ICA">ARB-ICA</option><option value="CA">CA</option><option value="CA-CWP">CA-CWP</option><option value="CA-MISC">CA-MISC</option><option value="CACP">CACP</option><option value="CAPP">CAPP</option><option value="CCEC">CCEC</option><option value="CCES">CCES</option><option value="CEA">CEA</option><option value="CEC">CEC</option><option value="CEGC">CEGC</option><option value="CESR">CESR</option><option value="CLAIM">CLAIM</option><option value="CMA">CMA</option><option value="CMM">CMM</option><option value="CO">CO</option><option value="CO-COM">CO-COM</option><option value="COA">COA</option><option value="COCP">COCP</option><option value="COMM-PET-M">COMM-PET-M</option><option value="CP">CP</option><option value="CP-MISC">CP-MISC</option><option value="CR-COM">CR-COM</option><option value="CRA">CRA</option><option value="CRA-AD">CRA-AD</option><option value="CRA-AS">CRA-AS</option><option value="CRA-D">CRA-D</option><option value="CRACP">CRACP</option><option value="CREF">CREF</option><option value="CRM-A">CRM-A</option><option value="CRM-CLT-OJ">CRM-CLT-OJ</option><option value="CRM-W">CRM-W</option><option value="CROCP">CROCP</option><option value="CRR(F)">CRR(F)</option><option value="CRREF">CRREF</option><option value="CRWP">CRWP</option><option value="CS">CS</option><option value="CS-OS">CS-OS</option><option value="CUSAP">CUSAP</option><option value="CWP-COM">CWP-COM</option><option value="CWP-PIL">CWP-PIL</option><option value="DP">DP</option><option value="EA">EA</option><option value="EDC">EDC</option><option value="EDREF">EDREF</option><option value="EFA">EFA</option><option value="EFA-COM">EFA-COM</option><option value="EP">EP</option><option value="EP-COM">EP-COM</option><option value="ESA">ESA</option><option value="FAO(FC)">FAO(FC)</option><option value="FAO-C">FAO-C</option><option value="FAO-CARB">FAO-CARB</option><option value="FAO-COM">FAO-COM</option><option value="FAO-ICA">FAO-ICA</option><option value="FAO-M">FAO-M</option><option value="GCR">GCR</option><option value="GSTA">GSTA</option><option value="GSTR">GSTR</option><option value="GTA">GTA</option><option value="GTC">GTC</option><option value="GTR">GTR</option><option value="GVATR">GVATR</option><option value="INCOMP">INCOMP</option><option value="INTTA">INTTA</option><option value="IOIN">IOIN</option><option value="ITA">ITA</option><option value="ITC">ITC</option><option value="ITR">ITR</option><option value="LPA">LPA</option><option value="LR">LR</option><option value="MATRF">MATRF</option><option value="MRC">MRC</option><option value="O&amp;M">O&amp;M</option><option value="OLR">OLR</option><option value="PBPT-APPL">PBPT-APPL</option><option value="PBT">PBT</option><option value="PMLA-APPL">PMLA-APPL</option><option value="PVR">PVR</option><option value="RA">RA</option><option value="RA-CA">RA-CA</option><option value="RA-CP">RA-CP</option><option value="RA-CR">RA-CR</option><option value="RA-CW">RA-CW</option><option value="RA-LP">RA-LP</option><option value="RA-RF">RA-RF</option><option value="RA-RS">RA-RS</option><option value="RCRWP">RCRWP</option><option value="RERA-APPL">RERA-APPL</option><option value="RFA">RFA</option><option value="RFA-COM">RFA-COM</option><option value="RP">RP</option><option value="SA">SA</option><option value="SAO">SAO</option><option value="SDR">SDR</option><option value="STA">STA</option><option value="STC">STC</option><option value="STR">STR</option><option value="TA">TA</option><option value="TA-COM">TA-COM</option><option value="TC">TC</option><option value="TCRM">TCRM</option><option value="UVA">UVA</option><option value="UVR">UVR</option><option value="VATAP">VATAP</option><option value="VATCASE">VATCASE</option><option value="VATREF">VATREF</option><option value="WTA">WTA</option><option value="WTC">WTC</option><option value="WTR">WTR</option><option value="XOBJ">XOBJ</option><option value="XOBJC">XOBJC</option><option value="XOBJL">XOBJL</option><option value="XOBJR">XOBJR</option><option value="XOBJS">XOBJS</option></select></td>
+  <td width="34%" align="center"><input name="t_case_no" [(ngModel)]="searchByCaseNumber.t_case_no" id="t_case_no" type="text" size="10" value=""></td>
+  <td width="33%" align="center"><select name="t_case_year"[(ngModel)]="searchByCaseNumber.t_case_year"  id="t_case_year"><option value="">-Select-</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option><option value="1969">1969</option><option value="1968">1968</option><option value="1967">1967</option><option value="1966">1966</option><option value="1965">1965</option><option value="1964">1964</option><option value="1963">1963</option><option value="1962">1962</option><option value="1961">1961</option><option value="1960">1960</option></select></td>			
+  </tr>
+  
+  <tr>
+  <td colspan="3" align="center"><input (click)="submit('caseNumber',searchByCaseNumber)"  name="submit" type="submit" value="Search Case"></td>
+  </tr>
+      
+                  <h5  align="center" *ngIf="isFormValid.indexOf('caseNumber') > -1" > <font color="RED">Please fill all required fields. </font>
+              </h5>
+
+  </tbody></table>
+  
+  
+  
+  
+  
+  
+  <table id="tables_input" *ngSwitchCase="'cnrNumber'"  align="center" border="1" width="50%" cellpadding="2" cellspacing="3">
+    <tbody><tr>
+      <th colspan="3" align="center"><strong>Search Cases By LAC Details</strong></th>
+  </tr>
+  
+  <tr>
+  <td width="33%" align="center">LAC District </td>
+  <td width="33%" align="center">LAC Number </td>
+  <td width="33%" align="center">LAC Date </td>
+  </tr>
+  <tr>
+  <td width="50%" align="center"><select [(ngModel)]="searchByCNRNumber.t_lac_dist"  name="t_lac_dist"><option value="1" selected="">AMBALA</option><option value="22">AMRITSAR                 </option><option value="43">BARNALA</option><option value="26">BATHINDA             </option><option value="13">BHIWANI                  </option><option value="46">CHARKHI DADRI</option><option value="9">FARIDABAD                </option><option value="28">FARIDKOT                 </option><option value="38">FATEHABAD                </option><option value="30">FATEHGARH-SAHIB          </option><option value="42">FAZILKA</option><option value="25">FEROZEPUR                </option><option value="27">GURDASPUR                </option><option value="8">GURGAON                  </option><option value="14">HISSAR                   </option><option value="23">HOSHIARPUR               </option><option value="21">JALANDHAR                </option><option value="37">JHAJJAR                  </option><option value="15">JIND                     </option><option value="5">KAITHAL                  </option><option value="31">KAPURTHALA               </option><option value="3">KARNAL                   </option><option value="2">KURUKSHETRA              </option><option value="19">LUDHIANA                 </option><option value="11">MAHENDERGARH             </option><option value="29">MANSA                    </option><option value="39">MEWAT (NUH)</option><option value="33">MOGA                     </option><option value="40">MOHALI (SAS NAGAR)</option><option value="91">NARNAUL</option><option value="34">NAWAN-SHAHAR(SBS NAGAR)</option><option value="99">OTHER-DISTRICT</option><option value="44">PALWAL</option><option value="36">PANCHKULA                </option><option value="6">PANIPAT                  </option><option value="45">PATHANKOT</option><option value="18">PATIALA                  </option><option value="10">REWARI                   </option><option value="12">ROHTAK                   </option><option value="20">ROPAR                    </option><option value="24">SANGRUR                  </option><option value="16">SIRSA                    </option><option value="7">SONEPAT                  </option><option value="35">SRI MUKTSAR SAHIB</option><option value="41">TARANTARAN</option><option value="98">UNKNOWN-DISTRICT</option><option value="17">UT-CHANDIGARH            </option><option value="4">YAMUNA-NAGAR             </option></select></td>
+  <td width="34%" align="center"><input  [(ngModel)]="searchByCNRNumber.t_lac_no" name="t_lac_no" id="t_lac_no" type="text" size="10" value="wer34234"></td>
+  <td width="50%" align="center"><input  (ngModelChange)="asignDateValue($event)" [ngModel]="searchByCNRNumberDate " type="date" name="t_lac_date"  id="t_lac_date"  size="10" value=""></td>	
+  </tr>
+  
+  <tr>
+    <td colspan="3" align="center"><input name="submit" (click)="submit('cnrNumber',searchByCNRNumber)" type="submit" value="Search Case"></td>
+  </tr>
+      
+  <h5  align="center" *ngIf="isFormValid.indexOf('cnrNumber') > -1" > <font color="RED">Please fill all required fields. </font>
+  </h5>
+
+  </tbody></table>
+  
+  
+  
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2>Case Search Result</h2>
+  <hr>
+  
+  <div style="font-size: x-large;font-weight:bold; text-align: center;margin-bottom:10px">{{message}}</div>
+<div class="loading" *ngIf="spinner">Loading&#8230;</div>
+  <table width="100%" id="tables11">
+    <tbody>
+    <tr>
+      <th *ngFor="let column of headers">
+        {{column}}
+      </th>
+    </tr>
+   <tr *ngFor="let data of listResponse">
+    <td *ngFor="let row of  data">
+      {{row}}
+    </td>
+  </tr>
+  </tbody>
+  </table>
+  
+  
+  
