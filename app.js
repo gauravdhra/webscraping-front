@@ -14,6 +14,8 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+//here
+
 app.use(function (req, res, next) {
   var allowedOrigins = ['http://127.0.0.1:8020','http://ec2-54-186-61-9.us-west-2.compute.amazonaws.com:3010','http://ec2-54-186-61-9.us-west-2.compute.amazonaws.com:3005','http://localhost:4200','https://courtscrap.herokuapp.com', 'https://frontscrap.herokuapp.com','http://localhost:8020', 'http://127.0.0.1:9000', 'http://localhost:9000'];
   var origin = req.headers.origin;
