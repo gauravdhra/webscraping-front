@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { MainHeaderComponent } from './common/main-header/main-header.component';
 import { DistrictCourtsComponent } from './district-courts/district-courts/district-courts.component';
 import { PoliceStationHeaderComponent } from './common/police-station-header/police-station-header.component';
+import { SupremeCourtComponent } from './supreme-court/supreme-court.component';
+import { TribunalsHeaderComponent } from './common/tribunals-header/tribunals-header.component';
 
 
 
@@ -20,7 +22,9 @@ import { PoliceStationHeaderComponent } from './common/police-station-header/pol
     AppComponent,
     HeaderComponent,
     MainHeaderComponent,
-    PoliceStationHeaderComponent
+    PoliceStationHeaderComponent,
+    SupremeCourtComponent,
+    TribunalsHeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,16 @@
+
+<h1 style="color:#5410ad">{{selectedTribunal | uppercase}}</h1>
+<b><label for="gender">Select Tribunal</label></b>
+<div class="form-group">
+  <select class="form-control" (change)="switchTribunal()"  [(ngModel)]="selectedTribunal">
+    <option value="green-tribunal">National Green Tribunal</option>
+
+    <!-- <option value="rajasthan">Rajasthan High Court</option>
+    <option value="sikkim">Sikkim High Court</option>
+    <option value="telangana">Telangana High Court</option>
+    <option value="tripura">Tripura High Court</option>
+    <option value="uttarakhand">Uttarakhand High Court</option> -->
+  </select>
+</div>
+
+<router-outlet></router-outlet>
