@@ -9,10 +9,12 @@ import { DatePipe } from '@angular/common';
 
 import { TribunalsRoutingModule } from './tribunals-routing.module';
 import { GreenTribunalComponent } from './green-tribunal/green-tribunal.component';
+import { ElectricityTribunalComponent } from './electricity-tribunal/electricity-tribunal.component';
+import { RailwayTribunalComponent } from './railway-tribunal/railway-tribunal.component';
 
 
 @NgModule({
-  declarations: [GreenTribunalComponent],
+  declarations: [GreenTribunalComponent, ElectricityTribunalComponent, RailwayTribunalComponent],
   imports: [
     CommonModule,
     TribunalsRoutingModule,

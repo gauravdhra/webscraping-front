@@ -1,0 +1,250 @@
+<b><label for="gender">Search By:</label></b>
+<div class="">
+    <!-- <label for="website">Search By: </label> -->
+    <select class="form-control" (change)="onselectSearchType($event)" (change)="onselectSearchType($event)"
+        [(ngModel)]="selectedSearch">
+        <option value="default" disabled>Choose Search By</option>
+        <option value="party">Party Name</option>
+        <option value="case-number">Case Number</option>
+        <!-- <option value="advocate">Advocate Name</option>
+        <option value="cnr-number">CNR Number</option> -->
+    </select>
+</div>
+
+<div [ngSwitch]="selectedSearch">
+
+
+
+
+    <table id="tables_input" align="center" border="1" *ngSwitchCase="'party'" width="50%" cellpadding="2"
+        cellspacing="3">
+        <tbody>
+            <tr>
+                <th colspan="3" align="center"><strong>Search By Party Name</strong></th>
+            </tr>
+            <tr>
+                <td width="34%" align="center">
+                    <font color="RED">*</font>Party Type
+                </td>
+                <td width="34%" align="center">
+                    <font color="RED">*</font>Party Name
+                </td>
+                <td width="34%" align="center">
+                    <font color="RED">*</font>Year
+                </td>
+            </tr>
+            <tr>
+                <td width="33%" align="center">
+                    <select name="rgyear" [(ngModel)]="searchByPartyName.party_type" id="rgyear">
+                        <option disabled value="">Select Party Type</option>
+                        <option value="1">Appellate/Petitioner</option>
+                        <option value="2">Respondent</option>
+                        <option value="3">Both</option>
+                    </select>
+                </td>
+                <td width="34%" align="center">
+                    <input name="advocate_name" [(ngModel)]="searchByPartyName.party_name" id="advocate_name" type="text"
+                        size="15" value="">
+                </td>
+
+                <td width="33%" align="center">
+                    <select name="rgyear" [(ngModel)]="searchByPartyName.diary_year" id="rgyear">
+                        <option [value]="year" *ngFor="let year of years">{{year}}</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="3" align="center"><input (click)="submit('party',searchByPartyName)" name="submit"
+                        type="submit" value="Search Case"></td>
+            </tr>
+            <h5 align="center" *ngIf="isFormValid.indexOf('party') > -1">
+                <font color="RED">Please fill all required fields. </font>
+            </h5>
+
+        </tbody>
+    </table>
+
+    <table id="tables_input" *ngSwitchCase="'advocate'" align="center" border="1" width="60%" cellpadding="2"
+        cellspacing="3">
+        <tbody>
+            <tr>
+                <th colspan="3" align="center"><strong>Search By Advocate Name</strong></th>
+            </tr>
+            <tr>
+                <td width="34%" align="center">
+                    <font color="RED">*</font>Zonal Bench
+                </td>
+                <td width="34%" align="center">
+                    <font color="RED">*</font>Party Type
+                </td>
+                <td width="34%" align="center">
+                    <font color="RED">*</font>Advocate Name
+                </td>
+            </tr>
+            <tr>
+                <td width="34%" align="center">
+                    <select name="rgyear" [(ngModel)]="searchByAdvocateName.zone_type" id="rgyear">
+                        <option disabled value="">Select Bench</option>
+
+                        <option value="1">Principal Bench</option>
+                        <option value="2">Eastern Zone</option>
+                        <option value="3">Central Zone</option>
+                        <option value="4">Western Zone</option>
+                        <option value="5">Southern Zone</option>
+                    </select>
+                </td>
+                <td width="33%" align="center">
+                    <select name="rgyear" [(ngModel)]="searchByAdvocateName.party_type" id="rgyear">
+                        <option disabled value="">Select Party Type</option>
+                        <option value="1">Petitioner</option>
+                        <option value="2">Respondent</option>
+                        <option value="3">Both</option>
+                    </select>
+                </td>
+                <td width="33%" align="center">
+                    <input name="advocate_name" [(ngModel)]="searchByAdvocateName.advocatename" id="advocate_name"
+                        type="text" size="15" value="">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="3" align="center"><input (click)="submit('advocate',searchByAdvocateName)" name="submit"
+                        type="submit" value="Search Case"></td>
+            </tr>
+            <h5 align="center" *ngIf="isFormValid.indexOf('advocate') > -1">
+                <font color="RED">Please fill all required fields. </font>
+            </h5>
+
+        </tbody>
+    </table>
+
+
+
+
+
+
+    <table id="tables_input" align="center" border="1" *ngSwitchCase="'case-number'" width="50%" cellpadding="2"
+        cellspacing="3">
+        <tbody>
+            <tr>
+                <th colspan="4" align="center"><strong>Search By Case Number</strong></th>
+            </tr>
+            <tr>
+                <td width="33%" align="center">
+                    <font color="RED">*</font>Case Type
+                </td>
+                <td width="33%" align="center">
+                    <font color="RED">*</font>Case Number
+                </td>
+                <td width="33%" align="center">
+                    <font color="RED">*</font>Case Year
+                </td>
+            </tr>
+            <tr>
+                <td width="33%" align="center">
+                    <select name="rgyear" [(ngModel)]="searchByCaseNumber.case_type">
+                        <option disabled value="">Select Case Type</option>
+
+                        <option value="1">APL</option>
+                        <option value="2">OSP</option>
+                        <option value="4">OP</option>
+                        <option value="5">EP</option>
+                        <option value="6">RP</option>
+                        <option value="7">CP</option>
+                        <option value="8">Petition/case</option>
+                        <option value="9">R.P</option>
+                        <option value="11">MP</option>
+                        <option value="12">GT</option>
+                        <option value="13">TD</option>
+                        <option value="14">TT</option>
+                        <option value="15">Case/Petition/OP/OA</option>
+                        <option value="16">Tariff Order</option>
+                        <option value="17">Any Other</option>
+                    </select>
+                </td>
+                <td width="33%" align="center"><input name="search_case_no" [(ngModel)]="searchByCaseNumber.case_no"
+                        id="search_case_no" type="text" size="10" value=""></td>
+
+
+
+                <td width="33%" align="center"><select name="rgyear" [(ngModel)]="searchByCaseNumber.diary_year"
+                        id="rgyear">
+                        <option [value]="year" *ngFor="let year of years">{{year}}</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="4" align="center"><input (click)="submit('case-number',searchByCaseNumber)" name="submit"
+                        type="submit" value="Search Case"></td>
+            </tr>
+            <h5 align="center" *ngIf="isFormValid.indexOf('case-number') > -1">
+                <font color="RED">Please fill all required fields. </font>
+            </h5>
+
+
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+    <table id="tables_input" *ngSwitchCase="'cnr-number'" align="center" border="1" width="50%" cellpadding="2"
+        cellspacing="3">
+        <tbody>
+            <tr>
+                <th colspan="3" align="center"><strong>
+                        <font color="RED">Search BY CNR Not Available</font>
+                    </strong></th>
+            </tr>
+
+            <!-- <tr>
+        <td width="33%" align="center"><font color="RED">*</font>Case Year </td>
+        <td width="33%" align="center"><font color="RED">*</font>CIR Number </td>
+        </tr>
+        <tr>
+            <td width="34%" align="center"><input name="m_yr" [(ngModel)]="searchByCNRNumber.m_yr" id="m_yr" type="text" size="10" value=""></td>
+            <td width="34%" align="center"><input  [(ngModel)]="searchByCNRNumber.m_no" name="t_lac_no" id="t_lac_no" type="text" size="10" value="wer34234"></td>
+        </tr>
+        
+        <tr>
+            <td colspan="3" align="center"><input name="submit" (click)="submit('cnr-number',searchByCNRNumber)" type="submit" value="Search Case"></td>
+        </tr> -->
+
+
+        </tbody>
+    </table>
+
+
+
+    <div>
+
+
+        <h2>Case Search Result</h2>
+        <hr>
+
+        <div style="font-size: x-large;font-weight:bold; text-align: center;margin-bottom:10px">{{message}}</div>
+        <div class="loading" *ngIf="spinner">Loading&#8230;</div>
+
+        <table width="100%" id="tables11">
+            <tbody>
+                <tr>
+                    <th *ngFor="let column of headers">
+                        {{column}}
+                    </th>
+                </tr>
+                <tr *ngFor="let data of listResponse">
+                    <td *ngFor="let row of  data">
+                        {{row}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        <div [innerHTML]="theTableString"></div>

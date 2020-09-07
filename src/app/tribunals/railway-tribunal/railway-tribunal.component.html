@@ -1,0 +1,159 @@
+    <table id="tables_input" align="center" border="1"width="50%" cellpadding="2"
+        cellspacing="3">
+        <tbody>
+            <tr>
+                <th colspan="4" align="center"><strong>Search By Suit No :</strong></th>
+            </tr>
+            <tr>
+                <td width="25%" align="center">
+                    <font color="RED">*</font>Case Type
+                </td>
+                <td width="25%" align="center">
+                    <font color="RED">*</font>Tribunal(RCT)
+                </td>
+                <td width="25%" align="center">
+                    <font color="RED">*</font>Case Number
+                </td>
+                <td width="25%" align="center">
+                    <font color="RED">*</font>Case Year
+                </td>
+            </tr>
+            <tr>
+                <td width="25%" align="center">
+                    <select name="rgyear" [(ngModel)]="searchByParameters.casetype">
+                        <option disabled value="">Select Case Type</option>
+                        <option value="CA">CA</option>
+
+                        <option value="EXA">EXA</option>
+
+                        <option value="IA">IA</option>
+
+                        <option value="MA">MA</option>
+
+                        <option value="MAO">MAO</option>
+
+                        <option value="OA (II a)">OA (II a)</option>
+
+                        <option value="OA (II u)">OA (II u)</option>
+
+                        <option value="OA (III)">OA (III)</option>
+
+                        <option value="OA I">OA I</option>
+
+                        <option value="RES">RES</option>
+
+                        <option value="REV">REV</option>
+
+                        <option value="TA20">TA20</option>
+
+                        <option value="TAA">TAA</option>
+
+                        <option value="TAC">TAC</option>
+
+                        <option value="TARG">TARG</option>
+
+                        <option value="TARP">TARP</option>
+
+                        <option value="TAU">TAU</option>
+                    </select>
+                </td>
+                <td width="25%" align="center">
+                    <select name="rgyear" [(ngModel)]="searchByParameters.rct">
+                        <option disabled value="">Select Terminal</option>
+
+                        <option value="ADI">RCT - AHMEDABAD</option>
+                                
+                        <option value="ALD">RCT - ALLAHABAD</option>
+                
+                        <option value="AMVT">RCT - AMARAVATI</option>
+                
+                        <option value="BBS">RCT - BHUBNESHWAR</option>
+                
+                        <option value="BPL">RCT - BHOPAL</option>
+                
+                        <option value="CDG">RCT - CHANDIGARH</option>
+                
+                        <option value="DLI">RCT - DELHI</option>
+                
+                        <option value="ERS">RCT - ERNAKULAM</option>
+                
+                        <option value="GHY">RCT - GUWAHATI</option>
+                
+                        <option value="GKP">RCT - GORAKHPUR</option>
+                
+                        <option value="GZB">RCT - GHAZIABAD</option>
+                
+                        <option value="JP">RCT - JAIPUR</option>
+                
+                        <option value="KOL">RCT - KOLKATA</option>
+                
+                        <option value="LKO">RCT - LUCKNOW</option>
+                
+                        <option value="MAS">RCT - CHENNAI</option>
+                
+                        <option value="MCC">RCT - MUMBAI</option>
+                
+                        <option value="NGP">RCT - NAGPUR</option>
+                
+                        <option value="PNBE">RCT - PATNA</option>
+                
+                        <option value="RBO">RBO-RAILWAY BOARD</option>
+                
+                        <option value="RNC">RCT-RANCHI</option>
+                
+                        <option value="SBC">RCT - BANGALORE</option>
+                
+                        <option value="SC">RCT - SECUNDERABAD</option>                    </select>
+                </td>
+                <td width="25%" align="center"><input name="search_case_no" [(ngModel)]="searchByParameters.caseno"
+                        id="search_case_no" type="text" size="10" value=""></td>
+
+
+
+                <td width="25%" align="center"><select name="rgyear" [(ngModel)]="searchByParameters.year"
+                        id="rgyear">
+                        <option [value]="year" *ngFor="let year of years">{{year}}</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="4" align="center"><input (click)="submit('',searchByParameters)" name="submit"
+                        type="submit" value="Search Case"></td>
+            </tr>
+            <h5 align="center" *ngIf="isFormValid.indexOf('case-number') > -1">
+                <font color="RED">Please fill all required fields. </font>
+            </h5>
+
+
+        </tbody>
+    </table>
+
+
+    <div>
+
+
+        <h2>Case Search Result</h2>
+        <hr>
+
+        <div style="font-size: x-large;font-weight:bold; text-align: center;margin-bottom:10px">{{message}}</div>
+        <div class="loading" *ngIf="spinner">Loading&#8230;</div>
+
+        <table width="100%" id="tables11">
+            <tbody>
+                <tr>
+                    <th *ngFor="let column of headers">
+                        {{column}}
+                    </th>
+                </tr>
+                <tr *ngFor="let data of listResponse">
+                    <td *ngFor="let row of  data">
+                        {{row}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        <div [innerHTML]="theTableString"></div>
